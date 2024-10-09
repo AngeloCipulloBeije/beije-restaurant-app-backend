@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 
 const bookingRoutes = require('./routes/bookingRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
@@ -10,6 +11,9 @@ const menuRoutes = require('./routes/menuRoutes');
 const initSwagger = require('./libs/swagger');
 
 const app = express();
+
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'views')));
 
 initSwagger(app)
 
@@ -24,6 +28,10 @@ app.use((err, req, res, next) => {
     next();
 });
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'index.html'));
+});
+
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/settings', settingsRoutes);
@@ -35,6 +43,6 @@ app.use((req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server in ascolto su http://0.0.0.0:${PORT}`);
 });
