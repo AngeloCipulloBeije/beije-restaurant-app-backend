@@ -32,7 +32,8 @@ exports.userMe = async (req, res) => {
             id: 'QpwL5tke4Pnpja7X4',
             email: 'test@beije.it',
             name: 'Angelo',
-            lastName: 'Test'
+            lastName: 'Test',
+            role: "ADMIN"
         })
     } else {
         res.status(400).json({
