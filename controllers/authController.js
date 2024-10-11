@@ -23,3 +23,21 @@ exports.signIn = async (req, res) => {
         }
     }
 };
+
+exports.userMe = async (req, res) => {
+    const { token  } = req.body;    
+
+    if (token === "QpwL5tke4Pnpja7X4") {
+        res.status(200).json({
+            id: 'QpwL5tke4Pnpja7X4',
+            email: 'test@beije.it',
+            name: 'Angelo',
+            lastName: 'Test'
+        })
+    } else {
+        res.status(400).json({
+            message: "Utente non esistente"
+        })
+    }
+
+}
