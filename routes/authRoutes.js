@@ -49,6 +49,7 @@ router.post('/signin', authController.signIn);
  *               token:
  *                 type: string
  *                 description: Token di autenticazione
+ *                 example: QpwL5tke4Pnpja7X4
  *             required:
  *               - token
  *     responses:
